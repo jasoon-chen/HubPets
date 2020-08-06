@@ -22,7 +22,7 @@ HubPets is basically a better alternative than EchoPets, however there are some 
 
 * **HubPets requires Java 8 or higher.** On older versions, the plugin may not work properly.
 
-* **HubPets supports Minecraft versions 1.12.2, 1.13.2, 1.14.4, 1.15.2, and 1.16.1. HOWEVER If you would like minecraft 1.8 - 1.16 compatiability, you would need to use ProtocolLib or any alternative plugin.**
+* **HubPets supports Minecraft versions 1.13.2, 1.14.4, 1.15.2, and 1.16.1. HOWEVER If you would like minecraft 1.8 - 1.16 compatiability, you would need to use ProtocolLib or any alternative plugin.**
 
 Support
 --------

@@ -5,7 +5,7 @@
   <a href="https://discord.gg/mQg3vHs">
     <img src="https://img.shields.io/badge/-Chat_on_Discord-7289DA.svg?logo=discord&style=flat-square&logoColor=white" alt="Discord">
   </a>
-  <a href=https://github.com/JaxonTekk/HubPets/releases/tag/v1.0.0">
+  <a href=https://github.com/JaxonTekk/HubPets/releases">
     <img src="https://img.shields.io/badge/-Download_from_Github-D24939.svg?logo=githubs&style=flat-square&logoColor=white" alt="Download">
   </a>
 </p>

@@ -2,10 +2,10 @@
 ![Image of Logo](https://media.discordapp.net/attachments/433404755281313792/740643531718262864/Untitled_drawing_5.png)
 
 <p align="center">
-  <a href="https://discord.gg/mQg3vHs>
+  <a href="https://discord.gg/mQg3vHs">
     <img src="https://img.shields.io/badge/-Chat_on_Discord-7289DA.svg?logo=discord&style=flat-square&logoColor=white" alt="Discord">
   </a>
-  <a href=https://github.com/JaxonTekk/HubPets/releases>
+  <a href="https://github.com/JaxonTekk/HubPets/releases">
     <img src="https://img.shields.io/badge/-Download_from_Github-D24939.svg?logo=githubs&style=flat-square&logoColor=white" alt="Download">
   </a>
 </p>

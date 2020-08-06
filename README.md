@@ -48,7 +48,7 @@ Setup
 
 **Be sure to set up your permissions inside of your permission plugin.**
 
-** For more information regarding this plugin, please read our [documentation](https://jaxontekk.gitbook.io/hubpets/)
+**For more information regarding this plugin, please read our [documentation](https://jaxontekk.gitbook.io/hubpets/)**
 
 Permissions
 --------

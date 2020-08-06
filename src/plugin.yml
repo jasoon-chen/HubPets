@@ -1,0 +1,504 @@
+name: HubPets
+version: "1.0.0"
+description: A plugin that is customized to allow users to spawn pets.
+author: JaxonTekk
+main: me.master.HubPets.HubPetsMAIN
+api-version: 1.16
+prefix: HubPets
+commands:
+  pets:
+    description: Prompts the user to a Pet Selector GUI.
+    usage: /pets
+    permission: hubpets.petcommand.pets.list
+    permission-message: §8[§cHubPets§8] §6You do not have permission to do /pets.
+    default: true
+  pet:
+    description: Shows the user all of HubPet's commands.
+    usage: /pet
+    permission: hubpets.petcommand.pet
+    permission-message: §8[§cHubPets§8] §6You do not have permission to do /pet.
+    default: true
+  pet name:
+    description: Allows the user to name their selected pet.
+    permission: hubpets.petcommand.pets.name
+    usage: /pet [name] [newpetname]
+    permission-message: §8[§cHubPets§8] §6You do not have permission to do /pet name <NEWPETNAME>.
+    default: false
+  pet info:
+    description: Shows the user all of HubPets information.
+    permission: hubpets.petcommand.pets.info
+    usage: /pet [info]
+    permission-message: §8[§cHubPets§8] §6You do not have permission to do /pet info.
+    default: true
+  pet help:
+    description: Shows the user all of HubPet's commands.
+    permission: hubpets.petcommand.pets.help
+    usage: /pet [help]
+    permission-message: §8[§cHubPets§8] §6You do not have permission to do /pet help.
+    default: true
+
+
+
+permissions:
+  # -------- MAIN CONFIGURATION PERMISSIONS --------
+  hubpets.update:
+    default: op
+    description: Updates the HubPets plugin.
+
+  #-------- PETS COMMANDS PERMISSIONS --------
+  hubpets.petcommand.pets.list:
+    default: true
+    description: Prompts the user to a Pet Selector GUI.
+  hubpets.petcommand.pet:
+    default: true
+    description: Shows the user all of HubPet's commands.
+  hubpets.petcommand.pets.name:
+    default: true
+    description: Allows the user to name their selected pet.
+  hubpets.petcommand.pets.info:
+    default: true
+    description: Command.
+  hubpets.petcommand.pets.help:
+    default: true
+    description: Shows the user all of HubPet's commands.
+
+  # -------- PETS CONFIGURATION PERMISSIONS --------
+  # WITCH
+  hubpets.pet.type.witch:
+    default: op
+  hubpets.pet.type.witch.remove:
+    default: op
+  hubpets.pet.type.witch.babify:
+    default: op
+  hubpets.pet.type.witch.name:
+    default: op
+  hubpets.pet.type.witch.coloredname:
+    default: op
+  hubpets.pet.type.witch.hat:
+    default: op
+  hubpets.pet.type.witch.bring:
+    default: op
+  hubpets.pet.type.witch.sit:
+    default: op
+  hubpets.pet.type.witch.respawn:
+    default: op
+
+  # CHICKEN
+  hubpets.pet.type.chicken:
+    default: op
+  hubpets.pet.type.chicken.remove:
+    default: op
+  hubpets.pet.type.chicken.babify:
+    default: op
+  hubpets.pet.type.chicken.name:
+    default: op
+  hubpets.pet.type.chicken.coloredname:
+    default: op
+  hubpets.pet.type.chicken.hat:
+    default: op
+  hubpets.pet.type.chicken.bring:
+    default: op
+  hubpets.pet.type.chicken.sit:
+    default: op
+  hubpets.pet.type.chicken.respawn:
+    default: op
+
+  # COW
+  hubpets.pet.type.cow:
+    default: op
+  hubpets.pet.type.cow.remove:
+    default: op
+  hubpets.pet.type.cow.babify:
+    default: op
+  hubpets.pet.type.cow.name:
+    default: op
+  hubpets.pet.type.cow.coloredname:
+    default: op
+  hubpets.pet.type.cow.hat:
+    default: op
+  hubpets.pet.type.cow.bring:
+    default: op
+  hubpets.pet.type.cow.sit:
+    default: op
+  hubpets.pet.type.cow.respawn:
+    default: op
+
+  # HORSE
+  hubpets.pet.type.horse:
+    default: op
+  hubpets.pet.type.horse.remove:
+    default: op
+  hubpets.pet.type.horse.babify:
+    default: op
+  hubpets.pet.type.horse.name:
+    default: op
+  hubpets.pet.type.horse.coloredname:
+    default: op
+  hubpets.pet.type.horse.hat:
+    default: op
+  hubpets.pet.type.horse.bring:
+    default: op
+  hubpets.pet.type.horse.sit:
+    default: op
+  hubpets.pet.type.horse.respawn:
+    default: op
+
+  # MOOSHROOM
+  hubpets.pet.type.mooshroom:
+    default: op
+  hubpets.pet.type.mooshroom.remove:
+    default: op
+  hubpets.pet.type.mooshroom.babify:
+    default: op
+  hubpets.pet.type.mooshroom.name:
+    default: op
+  hubpets.pet.type.mooshroom.coloredname:
+    default: op
+  hubpets.pet.type.mooshroom.hat:
+    default: op
+  hubpets.pet.type.mooshroom.bring:
+    default: op
+  hubpets.pet.type.mooshroom.sit:
+    default: op
+  hubpets.pet.type.mooshroom.respawn:
+    default: op
+
+  # PIG
+  hubpets.pet.type.pig:
+    default: op
+  hubpets.pet.type.pig.remove:
+    default: op
+  hubpets.pet.type.pig.babify:
+    default: op
+  hubpets.pet.type.pig.name:
+    default: op
+  hubpets.pet.type.pig.coloredname:
+    default: op
+  hubpets.pet.type.pig.hat:
+    default: op
+  hubpets.pet.type.pig.bring:
+    default: op
+  hubpets.pet.type.pig.sit:
+    default: op
+  hubpets.pet.type.pig.respawn:
+    default: op
+
+  # RABBIT
+  hubpets.pet.type.rabbit:
+    default: op
+  hubpets.pet.type.rabbit.remove:
+    default: op
+  hubpets.pet.type.rabbit.babify:
+    default: op
+  hubpets.pet.type.rabbit.name:
+    default: op
+  hubpets.pet.type.rabbit.coloredname:
+    default: op
+  hubpets.pet.type.rabbit.hat:
+    default: op
+  hubpets.pet.type.rabbit.bring:
+    default: op
+  hubpets.pet.type.rabbit.sit:
+    default: op
+  hubpets.pet.type.rabbit.respawn:
+    default: op
+
+  # SHEEP
+  hubpets.pet.type.sheep:
+    default: op
+  hubpets.pet.type.sheep.remove:
+    default: op
+  hubpets.pet.type.sheep.babify:
+    default: op
+  hubpets.pet.type.sheep.name:
+    default: op
+  hubpets.pet.type.sheep.coloredname:
+    default: op
+  hubpets.pet.type.sheep.hat:
+    default: op
+  hubpets.pet.type.sheep.bring:
+    default: op
+  hubpets.pet.type.sheep.sit:
+    default: op
+  hubpets.pet.type.sheep.respawn:
+    default: op
+
+  # SNOWGOLEM
+  hubpets.pet.type.snowgolem:
+    default: op
+  hubpets.pet.type.snowgolem.remove:
+    default: op
+  hubpets.pet.type.snowgolem.babify:
+    default: op
+  hubpets.pet.type.snowgolem.name:
+    default: op
+  hubpets.pet.type.snowgolem.coloredname:
+    default: op
+  hubpets.pet.type.snowgolem.hat:
+    default: op
+  hubpets.pet.type.snowgolem.bring:
+    default: op
+  hubpets.pet.type.snowgolem.sit:
+    default: op
+  hubpets.pet.type.snowgolem.respawn:
+    default: op
+
+  # VILLAGER
+  hubpets.pet.type.villager:
+    default: op
+  hubpets.pet.type.villager.remove:
+    default: op
+  hubpets.pet.type.villager.babify:
+    default: op
+  hubpets.pet.type.villager.name:
+    default: op
+  hubpets.pet.type.villager.coloredname:
+    default: op
+  hubpets.pet.type.villager.hat:
+    default: op
+  hubpets.pet.type.villager.bring:
+    default: op
+  hubpets.pet.type.villager.sit:
+    default: op
+  hubpets.pet.type.villager.respawn:
+    default: op
+
+  # ENDERMAN
+  hubpets.pet.type.enderman:
+    default: op
+  hubpets.pet.type.enderman.remove:
+    default: op
+  hubpets.pet.type.enderman.babify:
+    default: op
+  hubpets.pet.type.enderman.name:
+    default: op
+  hubpets.pet.type.enderman.coloredname:
+    default: op
+  hubpets.pet.type.enderman.hat:
+    default: op
+  hubpets.pet.type.enderman.bring:
+    default: op
+  hubpets.pet.type.enderman.sit:
+    default: op
+  hubpets.pet.type.enderman.respawn:
+    default: op
+
+  # IRONGOLEM
+  hubpets.pet.type.irongolem:
+    default: op
+  hubpets.pet.type.irongolem.remove:
+    default: op
+  hubpets.pet.type.irongolem.babify:
+    default: op
+  hubpets.pet.type.irongolem.name:
+    default: op
+  hubpets.pet.type.irongolem.coloredname:
+    default: op
+  hubpets.pet.type.irongolem.hat:
+    default: op
+  hubpets.pet.type.irongolem.bring:
+    default: op
+  hubpets.pet.type.irongolem.sit:
+    default: op
+  hubpets.pet.type.irongolem.respawn:
+    default: op
+
+  # SPIDER
+  hubpets.pet.type.spider:
+    default: op
+  hubpets.pet.type.spider.remove:
+    default: op
+  hubpets.pet.type.spider.babify:
+    default: op
+  hubpets.pet.type.spider.name:
+    default: op
+  hubpets.pet.type.spider.coloredname:
+    default: op
+  hubpets.pet.type.spider.hat:
+    default: op
+  hubpets.pet.type.spider.bring:
+    default: op
+  hubpets.pet.type.spider.sit:
+    default: op
+  hubpets.pet.type.spider.respawn:
+    default: op
+
+  # WOLF
+  hubpets.pet.type.wolf:
+    default: op
+  hubpets.pet.type.wolf.remove:
+    default: op
+  hubpets.pet.type.wolf.babify:
+    default: op
+  hubpets.pet.type.wolf.name:
+    default: op
+  hubpets.pet.type.wolf.coloredname:
+    default: op
+  hubpets.pet.type.wolf.hat:
+    default: op
+  hubpets.pet.type.wolf.bring:
+    default: op
+  hubpets.pet.type.wolf.sit:
+    default: op
+  hubpets.pet.type.wolf.respawn:
+    default: op
+
+  # BLAZE
+  hubpets.pet.type.blaze:
+    default: op
+  hubpets.pet.type.blaze.remove:
+    default: op
+  hubpets.pet.type.blaze.babify:
+    default: op
+  hubpets.pet.type.blaze.name:
+    default: op
+  hubpets.pet.type.blaze.coloredname:
+    default: op
+  hubpets.pet.type.blaze.hat:
+    default: op
+  hubpets.pet.type.blaze.bring:
+    default: op
+  hubpets.pet.type.blaze.sit:
+    default: op
+  hubpets.pet.type.blaze.respawn:
+    default: op
+
+  # CREEPER
+  hubpets.pet.type.creeper:
+    default: op
+  hubpets.pet.type.creeper.remove:
+    default: op
+  hubpets.pet.type.creeper.babify:
+    default: op
+  hubpets.pet.type.creeper.name:
+    default: op
+  hubpets.pet.type.creeper.coloredname:
+    default: op
+  hubpets.pet.type.creeper.hat:
+    default: op
+  hubpets.pet.type.creeper.bring:
+    default: op
+  hubpets.pet.type.creeper.sit:
+    default: op
+  hubpets.pet.type.creeper.respawn:
+    default: op
+
+  # DONKEY
+  hubpets.pet.type.donkey:
+    default: op
+  hubpets.pet.type.donkey.remove:
+    default: op
+  hubpets.pet.type.donkey.babify:
+    default: op
+  hubpets.pet.type.donkey.name:
+    default: op
+  hubpets.pet.type.donkey.coloredname:
+    default: op
+  hubpets.pet.type.donkey.hat:
+    default: op
+  hubpets.pet.type.donkey.bring:
+    default: op
+  hubpets.pet.type.donkey.sit:
+    default: op
+  hubpets.pet.type.donkey.respawn:
+    default: op
+
+  # SKELETON
+  hubpets.pet.type.skeleton:
+    default: op
+  hubpets.pet.type.skeleton.remove:
+    default: op
+  hubpets.pet.type.skeleton.babify:
+    default: op
+  hubpets.pet.type.skeleton.name:
+    default: op
+  hubpets.pet.type.skeleton.coloredname:
+    default: op
+  hubpets.pet.type.skeleton.hat:
+    default: op
+  hubpets.pet.type.skeleton.bring:
+    default: op
+  hubpets.pet.type.skeleton.sit:
+    default: op
+  hubpets.pet.type.skeleton.respawn:
+    default: op
+
+  # MULE
+  hubpets.pet.type.mule:
+    default: op
+  hubpets.pet.type.mule.remove:
+    default: op
+  hubpets.pet.type.mule.babify:
+    default: op
+  hubpets.pet.type.mule.name:
+    default: op
+  hubpets.pet.type.mule.coloredname:
+    default: op
+  hubpets.pet.type.mule.hat:
+    default: op
+  hubpets.pet.type.mule.bring:
+    default: op
+  hubpets.pet.type.mule.sit:
+    default: op
+  hubpets.pet.type.mule.respawn:
+    default: op
+
+  # WITHERSKELETON
+  hubpets.pet.type.witherskeleton:
+    default: op
+  hubpets.pet.type.witherskeleton.remove:
+    default: op
+  hubpets.pet.type.witherskeleton.babify:
+    default: op
+  hubpets.pet.type.witherskeleton.name:
+    default: op
+  hubpets.pet.type.witherskeleton.coloredname:
+    default: op
+  hubpets.pet.type.witherskeleton.hat:
+    default: op
+  hubpets.pet.type.witherskeleton.bring:
+    default: op
+  hubpets.pet.type.witherskeleton.sit:
+    default: op
+  hubpets.pet.type.witherskeleton.respawn:
+    default: op
+
+  # ZOMBIE
+  hubpets.pet.type.zombie:
+    default: op
+  hubpets.pet.type.zombie.remove:
+    default: op
+  hubpets.pet.type.zombie.babify:
+    default: op
+  hubpets.pet.type.zombie.name:
+    default: op
+  hubpets.pet.type.zombie.coloredname:
+    default: op
+  hubpets.pet.type.zombie.hat:
+    default: op
+  hubpets.pet.type.zombie.bring:
+    default: op
+  hubpets.pet.type.zombie.sit:
+    default: op
+  hubpets.pet.type.zombie.respawn:
+    default: op
+
+  # SILVERFISH
+  hubpets.pet.type.silverfish:
+    default: op
+  hubpets.pet.type.silverfish.remove:
+    default: op
+  hubpets.pet.type.silverfish.babify:
+    default: op
+  hubpets.pet.type.silverfish.name:
+    default: op
+  hubpets.pet.type.silverfish.coloredname:
+    default: op
+  hubpets.pet.type.silverfish.hat:
+    default: op
+  hubpets.pet.type.silverfish.bring:
+    default: op
+  hubpets.pet.type.silverfish.sit:
+    default: op
+  hubpets.pet.type.silverfish.respawn:
+    default: op

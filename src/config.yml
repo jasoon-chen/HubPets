@@ -1,0 +1,58 @@
+# ------------------------------------------------------
+#
+#      ░█─░█ ░█─░█ ░█▀▀█ ░█▀▀█ ░█▀▀▀ ▀▀█▀▀ ░█▀▀▀█
+#      ░█▀▀█ ░█─░█ ░█▀▀▄ ░█▄▄█ ░█▀▀▀ ─░█── ─▀▀▀▄▄
+#      ░█─░█ ─▀▄▄▀ ░█▄▄█ ░█─── ░█▄▄▄ ─░█── ░█▄▄▄█
+#
+#        By: masterguyonfire | Discord: mQg3vHs
+# -------------------------------------------------------
+
+# MUST READ: ONLY PUT THIS PLUGIN IN YOUR HUB WORLD. DO NOT PUT IT IN ANY OTHER WORLD.
+
+# ❗  𝐈𝐟 𝐲𝐨𝐮 𝐰𝐚𝐧𝐭 𝐚 𝐜𝐮𝐬𝐭𝐨𝐦 𝐇𝐮𝐛𝐏𝐞𝐭𝐬 𝐩𝐥𝐮𝐠𝐢𝐧 𝐭𝐨 𝐟𝐢𝐭 𝐲𝐨𝐮𝐫 𝐬𝐞𝐫𝐯𝐞𝐫, 𝐣𝐨𝐢𝐧 𝐨𝐮𝐫 𝐝𝐢𝐬𝐜𝐨𝐫𝐝 𝐬𝐞𝐫𝐯𝐞𝐫. mQg3vHs ❗
+
+# ❗  𝐉𝐨𝐢𝐧 𝐨𝐮𝐫 𝐝𝐢𝐬𝐜𝐨𝐫𝐝 𝐬𝐞𝐫𝐯𝐞𝐫 𝐢𝐟 𝐲𝐨𝐮 𝐡𝐚𝐯𝐞 𝐚𝐧𝐲 𝐪𝐮𝐞𝐬𝐭𝐢𝐨𝐧𝐬/𝐛𝐮𝐠𝐬 𝐫𝐞𝐠𝐚𝐫𝐝𝐢𝐧𝐠 𝐭𝐡𝐞 𝐩𝐥𝐮𝐠𝐢𝐧. mQg3vHs ❗
+
+# ALL COMMAND PERMISSIONS ARE LISTED IN THE PLUGIN DOCUMENTATION PAGE
+
+# INSTRUCTIONS: Read this config file and adjust the values to your needs. Be sure that you follow each instruction over the config.
+
+# HUB-TOOL:
+#         DESCRIPTION: Gives users a pet tool.
+#         USAGE: If you would like users that spawn in the world to get a pet tool, then change this to true. Otherwise, change it to false.
+#         DEFAULT: true
+hub-tool: true
+
+# HUB-TOOL-SLOT:
+#         PRE-REQUIREMENTS: This will only work if the hub-tool above is true.
+#         DESCRIPTION: Selects the slot of where the hub-tool goes to when spawned.
+#         USAGE: If you would like players to get the pet tool at a certain inventory slot, then change it to your desire number.
+#         DEFAULT: 0
+#         WARNING: Inventory Slots start at 0.
+hub-tool-slot: 1
+
+# HUB-WORLD:
+#         DESCRIPTION: Selects the world where tools/commands/pets will be spawned at.
+#         USAGE: If you would like the hubpets plugin to work in a certain world, then change it to your desired world.
+#         DEFAULT: "world"
+#         WARNING: CASE SENSITIVE
+hub-world: "world"
+
+# COLORED-PETNAMES:
+#         DESCRIPTION: Allows users to have colored pet names.
+#         USAGE: If you would like users to have colored pet names, then set this to true. Otherwise, change it to false.
+#         DEFAULT: true
+colored-petnames: true
+
+# KILL-PET:
+#         DESCRIPTION: Allows users to kill their pets.
+#         USAGE: If you would like users to kill their pets, then set this to true. Otherwise, change it to false.
+#         DEFAULT: false
+kill-pet: false
+
+# MAXIMUM-DISTANCE:
+#         DESCRIPTION: Maximum distance between the owner and the pet till it teleports the pet.
+#         USAGE: Change the value to the distance you desire. The number is ___ blocks.
+#         DEFAULT: 20
+#         WARNING: It is best if you test each value in your own hub to get the best value. AND Must be a positive number.
+maximum-distance: 20

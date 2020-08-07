@@ -6,7 +6,6 @@ import me.master.HubPets.pets.Pet;
 import me.master.HubPets.pets.witch;
 import me.master.HubPets.ymlManagement.ConfigManager;
 import me.master.HubPets.ymlManagement.mainConfigManager;
-import net.minecraft.server.v1_16_R1.ItemAir;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -18,10 +17,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.player.PlayerInteractEvent;
-import org.bukkit.event.player.PlayerItemHeldEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.event.player.*;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -80,6 +76,15 @@ public class HubPetsMAIN extends JavaPlugin implements Listener
     {
         getConfig().options().copyDefaults(true);
         saveDefaultConfig();
+    }
+
+    @EventHandler
+    public void dropTool( PlayerDropItemEvent event )
+    {
+        if( event.getItemDrop().getItemStack().getType() == Material.BONE )
+        {
+            event.setCancelled( true );
+        }
     }
 
     @EventHandler
@@ -172,130 +177,135 @@ public class HubPetsMAIN extends JavaPlugin implements Listener
         Player player = event.getPlayer();
         Action action = event.getAction();
 
-        if (action.equals(Action.RIGHT_CLICK_AIR) || action.equals(Action.RIGHT_CLICK_BLOCK) )
+        if( player.getInventory().getItemInMainHand().getType() == null )
         {
-            if( player.getInventory().getItemInMainHand().getItemMeta().equals(YELLOW + "Pet Selector" ) );
+            return;
+        }
+            if( action.equals(Action.RIGHT_CLICK_AIR) || action.equals(Action.RIGHT_CLICK_BLOCK)  )
             {
-                if (player.hasPermission("hubpets.petcommand.pets.list")) {
-                    // Create the inventory
-                    Inventory petSelector = Bukkit.createInventory(player, 45, "Pet Selector");
+                String type = player.getInventory().getItemInMainHand().getType().toString();
+                if( type.equals("BONE") )
+                {
+                    if (player.hasPermission("hubpets.petcommand.pets.list")) {
+                        // Create the inventory
+                        Inventory petSelector = Bukkit.createInventory(player, 45, "Pet Selector");
 
-                    // Put Items into the inventory
-                    Pet pet = new Pet();
+                        // Put Items into the inventory
+                        Pet pet = new Pet();
 
-                    // Chat Color
-                    net.md_5.bungee.api.ChatColor hasperm = RED;
+                        // Chat Color
+                        net.md_5.bungee.api.ChatColor hasperm = RED;
 
-                    // Integer of where to place it in the inventory
-                    for (int i = 0; i < pet.size(); i++) {
-                        ItemStack item = new ItemStack(pet.getEgg(i), 1);
+                        // Integer of where to place it in the inventory
+                        for (int i = 0; i < pet.size(); i++) {
+                            ItemStack item = new ItemStack(pet.getEgg(i), 1);
 
-                        // Put a description of the Item
-                        ItemMeta item1meta = item.getItemMeta();
-                        if (player.hasPermission(pet.getPermission(i))) {
-                            hasperm = GREEN;
+                            // Put a description of the Item
+                            ItemMeta item1meta = item.getItemMeta();
+                            if (player.hasPermission(pet.getPermission(i))) {
+                                hasperm = GREEN;
+                            }
+                            item1meta.setDisplayName(hasperm + pet.getName(i) + " Pet");
+                            item.setItemMeta(item1meta);
+                            petSelector.setItem(i, item);
+                            hasperm = RED;
                         }
-                        item1meta.setDisplayName(hasperm + pet.getName(i) + " Pet");
-                        item.setItemMeta(item1meta);
-                        petSelector.setItem(i, item);
-                        hasperm = RED;
+
+                        // Babify Pet
+                        ItemStack babyPet = new ItemStack(Material.CRAFTING_TABLE, 1);
+
+                        // - Description
+                        ArrayList<String> babyPetDescription = new ArrayList<>();
+                        babyPetDescription.add(GRAY + "Click here to babify your pet.");
+
+                        ItemMeta babyPet1 = babyPet.getItemMeta();
+                        babyPet1.setDisplayName(YELLOW + "Babyify");
+                        babyPet1.setLore(babyPetDescription);
+                        babyPet.setItemMeta(babyPet1);
+                        petSelector.setItem(36, babyPet);
+
+                        // Name Pet
+                        ItemStack namePet = new ItemStack(Material.NAME_TAG, 1);
+
+                        // - Description
+                        ArrayList<String> namePetDescription = new ArrayList<>();
+                        namePetDescription.add(GRAY + "Click here to name your pet.");
+
+                        ItemMeta namePet1 = namePet.getItemMeta();
+                        namePet1.setDisplayName(YELLOW + "Name");
+                        namePet1.setLore(namePetDescription);
+                        ItemStack nametag = new ItemStack(Material.NAME_TAG);
+                        namePet.setItemMeta(namePet1);
+                        petSelector.setItem(37, namePet);
+
+                        // Ride Pet
+                        ItemStack followPet = new ItemStack(Material.SADDLE, 1);
+
+                        // - Description
+                        ArrayList<String> ridePetDescription = new ArrayList<>();
+                        ridePetDescription.add(GRAY + "Click here to sit on your pet.");
+
+                        ItemMeta followPet1 = followPet.getItemMeta();
+                        followPet1.setDisplayName(YELLOW + "Sit");
+                        followPet1.setLore(ridePetDescription);
+                        followPet.setItemMeta(followPet1);
+                        petSelector.setItem(38, followPet);
+
+                        // Hat Pet
+                        ItemStack hatPet = new ItemStack(Material.IRON_HELMET, 1);
+
+                        // - Description
+                        ArrayList<String> hatPetDescription = new ArrayList<>();
+                        hatPetDescription.add(GRAY + "Click here to hat your pet.");
+
+                        ItemMeta hatPet1 = hatPet.getItemMeta();
+                        hatPet1.setDisplayName(YELLOW + "Hat");
+                        hatPet1.setLore(hatPetDescription);
+                        hatPet.setItemMeta(hatPet1);
+                        petSelector.setItem(39, hatPet);
+
+                        // Bring Pet
+                        ItemStack bringPet = new ItemStack(Material.ENDER_PEARL, 1);
+
+                        // - Description
+                        ArrayList<String> bringPetDescription = new ArrayList<>();
+                        bringPetDescription.add(GRAY + "Click here to bring your pet.");
+
+                        ItemMeta bringPet1 = bringPet.getItemMeta();
+                        bringPet1.setDisplayName(YELLOW + "Bring");
+                        bringPet1.setLore(bringPetDescription);
+                        bringPet.setItemMeta(bringPet1);
+                        petSelector.setItem(41, bringPet);
+
+                        // Remove Pet
+                        ItemStack removePet = new ItemStack(Material.BONE, 1);
+
+                        // - Description
+                        ArrayList<String> removePetDescription = new ArrayList<>();
+                        removePetDescription.add(GRAY + "Click here to remove your pet.");
+
+                        ItemMeta removePet1 = removePet.getItemMeta();
+                        removePet1.setDisplayName(YELLOW + "Remove");
+                        removePet1.setLore(removePetDescription);
+                        removePet.setItemMeta(removePet1);
+                        petSelector.setItem(42, removePet);
+
+                        // Respawn Pet
+                        ItemStack respawnPet = new ItemStack(Material.GOLDEN_APPLE, 1);
+
+                        // - Description
+                        ArrayList<String> respawnPetDescription = new ArrayList<>();
+                        respawnPetDescription.add(GRAY + "Click here to respawn your pet.");
+
+                        ItemMeta respawnPet1 = respawnPet.getItemMeta();
+                        respawnPet1.setDisplayName(YELLOW + "Respawn");
+                        respawnPet1.setLore(respawnPetDescription);
+                        respawnPet.setItemMeta(respawnPet1);
+                        petSelector.setItem(44, respawnPet);
+
+                        player.openInventory(petSelector);
                     }
-
-                    // Babify Pet
-                    ItemStack babyPet = new ItemStack(Material.CRAFTING_TABLE, 1);
-
-                    // - Description
-                    ArrayList<String> babyPetDescription = new ArrayList<>();
-                    babyPetDescription.add(GRAY + "Click here to babify your pet.");
-
-                    ItemMeta babyPet1 = babyPet.getItemMeta();
-                    babyPet1.setDisplayName(YELLOW + "Babyify");
-                    babyPet1.setLore(babyPetDescription);
-                    babyPet.setItemMeta(babyPet1);
-                    petSelector.setItem(36, babyPet);
-
-                    // Name Pet
-                    ItemStack namePet = new ItemStack(Material.NAME_TAG, 1);
-
-                    // - Description
-                    ArrayList<String> namePetDescription = new ArrayList<>();
-                    namePetDescription.add(GRAY + "Click here to name your pet.");
-
-                    ItemMeta namePet1 = namePet.getItemMeta();
-                    namePet1.setDisplayName(YELLOW + "Name");
-                    namePet1.setLore(namePetDescription);
-                    ItemStack nametag = new ItemStack(Material.NAME_TAG);
-                    namePet.setItemMeta(namePet1);
-                    petSelector.setItem(37, namePet);
-
-                    // Ride Pet
-                    ItemStack followPet = new ItemStack(Material.SADDLE, 1);
-
-                    // - Description
-                    ArrayList<String> ridePetDescription = new ArrayList<>();
-                    ridePetDescription.add(GRAY + "Click here to sit on your pet.");
-
-                    ItemMeta followPet1 = followPet.getItemMeta();
-                    followPet1.setDisplayName(YELLOW + "Sit");
-                    followPet1.setLore(ridePetDescription);
-                    followPet.setItemMeta(followPet1);
-                    petSelector.setItem(38, followPet);
-
-                    // Hat Pet
-                    ItemStack hatPet = new ItemStack(Material.IRON_HELMET, 1);
-
-                    // - Description
-                    ArrayList<String> hatPetDescription = new ArrayList<>();
-                    hatPetDescription.add(GRAY + "Click here to hat your pet.");
-
-                    ItemMeta hatPet1 = hatPet.getItemMeta();
-                    hatPet1.setDisplayName(YELLOW + "Hat");
-                    hatPet1.setLore(hatPetDescription);
-                    hatPet.setItemMeta(hatPet1);
-                    petSelector.setItem(39, hatPet);
-
-                    // Bring Pet
-                    ItemStack bringPet = new ItemStack(Material.ENDER_PEARL, 1);
-
-                    // - Description
-                    ArrayList<String> bringPetDescription = new ArrayList<>();
-                    bringPetDescription.add(GRAY + "Click here to bring your pet.");
-
-                    ItemMeta bringPet1 = bringPet.getItemMeta();
-                    bringPet1.setDisplayName(YELLOW + "Bring");
-                    bringPet1.setLore(bringPetDescription);
-                    bringPet.setItemMeta(bringPet1);
-                    petSelector.setItem(41, bringPet);
-
-                    // Remove Pet
-                    ItemStack removePet = new ItemStack(Material.BONE, 1);
-
-                    // - Description
-                    ArrayList<String> removePetDescription = new ArrayList<>();
-                    removePetDescription.add(GRAY + "Click here to remove your pet.");
-
-                    ItemMeta removePet1 = removePet.getItemMeta();
-                    removePet1.setDisplayName(YELLOW + "Remove");
-                    removePet1.setLore(removePetDescription);
-                    removePet.setItemMeta(removePet1);
-                    petSelector.setItem(42, removePet);
-
-                    // Respawn Pet
-                    ItemStack respawnPet = new ItemStack(Material.GOLDEN_APPLE, 1);
-
-                    // - Description
-                    ArrayList<String> respawnPetDescription = new ArrayList<>();
-                    respawnPetDescription.add(GRAY + "Click here to respawn your pet.");
-
-                    ItemMeta respawnPet1 = respawnPet.getItemMeta();
-                    respawnPet1.setDisplayName(YELLOW + "Respawn");
-                    respawnPet1.setLore(respawnPetDescription);
-                    respawnPet.setItemMeta(respawnPet1);
-                    petSelector.setItem(44, respawnPet);
-
-                    player.openInventory(petSelector);
                 }
             }
         }
     }
-}

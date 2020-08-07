@@ -6,18 +6,24 @@ import me.master.HubPets.ymlManagement.mainConfigManager;
 import me.master.HubPets.pets.*;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.World;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
+import org.bukkit.event.entity.EntityPortalEnterEvent;
+import org.bukkit.event.entity.EntityPortalEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.PlayerChangedWorldEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.plugin.Plugin;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -4964,5 +4970,383 @@ public class petListener implements Listener
             return true;
         }
         return true;
+    }
+
+    @EventHandler
+    public void playerLeaveWorld( PlayerChangedWorldEvent event )
+    {
+        Player player = event.getPlayer();
+        World world = event.getPlayer().getWorld();
+
+        int indexOfBracket = world.toString().indexOf("}");
+
+        String newWorld = world.toString().substring(16, indexOfBracket );
+
+        Bukkit.getConsoleSender().sendMessage( newWorld );
+
+        if( !(newWorld.equals(config1.getHubWorld() )) )
+        {
+            if( config.getLastPet( player.getUniqueId() ).equals("witch") )
+            {
+                witch.removeWitch( player );
+                config.setLastPet( player.getUniqueId(), "witch" );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("cat") )
+            {
+                cat.removeCat( player );
+                config.setLastPet( player.getUniqueId(), "cat" );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("chicken") )
+            {
+                chicken.removeChicken( player );
+                config.setLastPet( player.getUniqueId(), "chicken" );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("cow") )
+            {
+                cow.removeCow( player );
+                config.setLastPet( player.getUniqueId(), "cow" );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("horse") )
+            {
+                horse.removeHorse( player );
+                config.setLastPet( player.getUniqueId(), "horse" );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("mooshroom") )
+            {
+                mooshroom.removeMooshroom( player );
+                config.setLastPet( player.getUniqueId(), "mooshroom" );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("ocelot") )
+            {
+                ocelot.removeOcelot( player );
+                config.setLastPet( player.getUniqueId(), "ocelot" );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("pig") )
+            {
+                pig.removePig( player );
+                config.setLastPet( player.getUniqueId(), "pig" );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("rabbit") )
+            {
+                rabbit.removeRabbit( player );
+                config.setLastPet( player.getUniqueId(), "rabbit" );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("sheep") )
+            {
+                sheep.respawnSheep( player );
+                config.setLastPet( player.getUniqueId(), "sheep" );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("snowgolem") )
+            {
+                snowgolem.removeGolem( player );
+                config.setLastPet( player.getUniqueId(), "snowgolem" );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("villager") )
+            {
+                villager.respawnVillager( player );
+                config.setLastPet( player.getUniqueId(), "villager" );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("enderman") )
+            {
+                enderman.removeEnderman( player );
+                config.setLastPet( player.getUniqueId(), "irongolem" );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("spider") )
+            {
+                spider.removeSpider( player );
+                config.setLastPet( player.getUniqueId(), "spider" );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("wolf") )
+            {
+                wolf.removeWolf( player );
+                config.setLastPet( player.getUniqueId(), "wolf" );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("blaze") )
+            {
+                blaze.removeBlaze( player );
+                config.setLastPet( player.getUniqueId(), "blaze" );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("creeper") )
+            {
+                creeper.removeCreeper( player );
+                config.setLastPet( player.getUniqueId(), "creeper" );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("donkey") )
+            {
+                donkey.removeDonkey( player );
+                config.setLastPet( player.getUniqueId(), "donkey" );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("skeleton") )
+            {
+                skeleton.removeSkeleton( player );
+                config.setLastPet( player.getUniqueId(), "skeleton" );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("mule") )
+            {
+                mule.removeMule( player );
+                config.setLastPet( player.getUniqueId(), "mule" );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("witherskeleton") )
+            {
+                witherskeleton.removeWitherskeleton( player );
+                config.setLastPet( player.getUniqueId(), "witherskeleton" );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("zombie") )
+            {
+                zombie.removeZombie( player );
+                config.setLastPet( player.getUniqueId(), "zombie" );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("silverfish") )
+            {
+                silverfish.removeSilverfish( player );
+                config.setLastPet( player.getUniqueId(), "silverfish" );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("babycat") )
+            {
+                cat.removeCat( player );
+                config.setLastPet( player.getUniqueId(), "silverfish" );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("babychicken") )
+            {
+                chicken.removeChicken( player );
+                config.setLastPet( player.getUniqueId(), "silverfish" );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("babycow") )
+            {
+                cow.removeCow( player );
+                config.setLastPet( player.getUniqueId(), "silverfish" );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("babymooshroom") )
+            {
+                mooshroom.removeMooshroom( player );
+                config.setLastPet( player.getUniqueId(), "silverfish" );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("babyocelot") )
+            {
+                ocelot.removeOcelot( player );
+                config.setLastPet( player.getUniqueId(), "silverfish" );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("babypig") )
+            {
+                pig.removePig( player );
+                config.setLastPet( player.getUniqueId(), "silverfish" );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("babyrabbit") )
+            {
+                rabbit.removeRabbit( player );
+                config.setLastPet( player.getUniqueId(), "silverfish" );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("babysheep") )
+            {
+                sheep.removeSheep( player );
+                config.setLastPet( player.getUniqueId(), "silverfish" );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("babywolf") )
+            {
+                wolf.removeWolf( player );
+                config.setLastPet( player.getUniqueId(), "silverfish" );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("babyhorse") )
+            {
+                horse.removeHorse( player );
+                config.setLastPet( player.getUniqueId(), "silverfish" );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("babymule") )
+            {
+                mule.removeMule( player );
+                config.setLastPet( player.getUniqueId(), "silverfish" );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("babydonkey") )
+            {
+                donkey.removeDonkey( player );
+                config.setLastPet( player.getUniqueId(), "silverfish" );
+            }
+
+        }
+
+        if( newWorld.equals(config1.getHubWorld() ) )
+        {
+            if( config.getLastPet( player.getUniqueId() ).equals("witch") )
+            {
+                witch.spawnWitch( player );
+                witch.bringWitch( player );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("cat") )
+            {
+                cat.spawnCat( player );
+                cat.bringCat( player );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("chicken") )
+            {
+                chicken.spawnChicken( player );
+                chicken.bringChicken( player );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("cow") )
+            {
+                cow.spawnCow( player );
+                cow.bringCow( player );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("horse") )
+            {
+                horse.spawnHorse( player );
+                horse.bringHorse( player );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("mooshroom") )
+            {
+                mooshroom.spawnMooshroom( player );
+                mooshroom.bringMooshroom( player );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("ocelot") )
+            {
+                ocelot.spawnOcelot( player );
+                ocelot.bringOcelot( player );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("pig") )
+            {
+                pig.spawnPig( player );
+                pig.bringPig( player );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("rabbit") )
+            {
+                rabbit.spawnRabbit( player );
+                rabbit.bringRabbit( player );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("sheep") )
+            {
+                sheep.spawnSheep( player );
+                sheep.bringSheep( player );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("snowgolem") )
+            {
+                snowgolem.spawnGolem( player );
+                snowgolem.bringGolem( player );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("villager") )
+            {
+                villager.spawnVillager( player );
+                villager.bringVillager( player );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("enderman") )
+            {
+                enderman.spawnEnderman( player );
+                enderman.bringEnderman( player );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("spider") )
+            {
+                spider.spawnSpider( player );
+                spider.bringSpider( player );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("wolf") )
+            {
+                wolf.spawnWolf( player );
+                wolf.bringWolf( player );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("blaze") )
+            {
+                blaze.spawnBlaze( player );
+                blaze.bringBlaze( player );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("creeper") )
+            {
+                creeper.spawnCreeper( player );
+                creeper.bringCreeper( player );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("donkey") )
+            {
+                donkey.spawnDonkey( player );
+                donkey.bringDonkey( player );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("skeleton") )
+            {
+                skeleton.spawnSkeleton( player );
+                skeleton.bringSkeleton( player );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("mule") )
+            {
+                mule.spawnMule( player );
+                mule.bringMule( player );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("witherskeleton") )
+            {
+                witherskeleton.spawnWitherskeleton( player );
+                witherskeleton.bringWitherskeleton( player );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("zombie") )
+            {
+                zombie.spawnZombie( player );
+                zombie.bringZombie( player );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("silverfish") )
+            {
+                silverfish.spawnSilverfish( player );
+                silverfish.bringSilverfish( player );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("babycat") )
+            {
+                cat.setBabyCat( player );
+                cat.bringCat( player );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("babychicken") )
+            {
+                chicken.setBabyChicken( player );
+                chicken.bringChicken( player );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("babycow") )
+            {
+                cow.setBabyCow( player );
+                cow.bringCow( player );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("babymooshroom") )
+            {
+                mooshroom.setBabyMooshroom( player );
+                mooshroom.bringMooshroom( player );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("babyocelot") )
+            {
+                ocelot.setBabyOcelot( player );
+                ocelot.bringOcelot( player );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("babypig") )
+            {
+                pig.setBabyPig( player );
+                pig.bringPig( player );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("babyrabbit") )
+            {
+                rabbit.setBabyRabbit( player );
+                rabbit.bringRabbit( player );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("babysheep") )
+            {
+                sheep.setBabySheep( player );
+                sheep.bringSheep( player );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("babywolf") )
+            {
+                wolf.setBabyWolf( player );
+                wolf.bringWolf( player );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("babyhorse") )
+            {
+                horse.setBabyHorse( player );
+                horse.bringHorse( player );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("babymule") )
+            {
+                mule.setBabyMule( player );
+                mule.bringMule( player );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("babydonkey") )
+            {
+                donkey.setBabyDonkey( player );
+                donkey.bringDonkey( player );
+            }
+        }
+    }
+
+    @EventHandler
+    public void entityEnterPortal( EntityPortalEvent event )
+    {
+        event.setCancelled( true );
     }
 }

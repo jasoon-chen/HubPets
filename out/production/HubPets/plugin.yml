@@ -3,6 +3,7 @@ version: "1.0.0"
 description: A plugin that is customized to allow users to spawn pets.
 author: JaxonTekk
 main: me.master.HubPets.HubPetsMAIN
+api-version: 1.16
 prefix: HubPets
 commands:
   pets:

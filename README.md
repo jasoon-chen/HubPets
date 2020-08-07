@@ -40,7 +40,7 @@ Setup
 
 3. Start and Stop the server.
 
-4. Open `/plugins/HubPets/config.yml`
+4. Open `/plugins/HubPets/config.yml`.
 
 5. Configure the file to your needs.
 
@@ -48,10 +48,10 @@ Setup
 
 **Be sure to set up your permissions inside of your permission plugin.**
 
-**For more information regarding this plugin, please read our [documentation](https://jaxontekk.gitbook.io/hubpets/)**
+**For more information regarding this plugin, please read our [documentation](https://jaxontekk.gitbook.io/hubpets/).**
 
 Permissions
 --------
 
-All permissions regarding the plugin can be found [here](https://jaxontekk.gitbook.io/hubpets/setup/permissions)
+All permissions regarding the plugin can be found [here](https://jaxontekk.gitbook.io/hubpets/setup/permissions).
 

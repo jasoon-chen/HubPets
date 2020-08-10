@@ -1,5 +1,5 @@
 name: HubPets
-version: "1.0.2"
+version: "1.0.3"
 description: A plugin that is customized to allow users to spawn pets.
 author: JaxonTekk
 main: me.master.HubPets.HubPetsMAIN
@@ -501,4 +501,44 @@ permissions:
   hubpets.pet.type.silverfish.sit:
     default: op
   hubpets.pet.type.silverfish.respawn:
+    default: op
+
+  # Cat
+  hubpets.pet.type.cat:
+    default: op
+  hubpets.pet.type.cat.remove:
+    default: op
+  hubpets.pet.type.cat.babify:
+    default: op
+  hubpets.pet.type.cat.name:
+    default: op
+  hubpets.pet.type.cat.coloredname:
+    default: op
+  hubpets.pet.type.cat.hat:
+    default: op
+  hubpets.pet.type.cat.bring:
+    default: op
+  hubpets.pet.type.cat.sit:
+    default: op
+  hubpets.pet.type.cat.respawn:
+    default: op
+
+  # Fox
+  hubpets.pet.type.fox:
+    default: op
+  hubpets.pet.type.fox.remove:
+    default: op
+  hubpets.pet.type.fox.babify:
+    default: op
+  hubpets.pet.type.fox.name:
+    default: op
+  hubpets.pet.type.fox.coloredname:
+    default: op
+  hubpets.pet.type.fox.hat:
+    default: op
+  hubpets.pet.type.fox.bring:
+    default: op
+  hubpets.pet.type.fox.sit:
+    default: op
+  hubpets.pet.type.fox.respawn:
     default: op

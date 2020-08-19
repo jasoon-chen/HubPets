@@ -1,5 +1,5 @@
 name: HubPets
-version: "1.0.3"
+version: "1.0.5"
 description: A plugin that is customized to allow users to spawn pets.
 author: JaxonTekk
 main: me.master.HubPets.HubPetsMAIN

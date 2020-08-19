@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="HubPets:jar">
-    <output-path>$PROJECT_DIR$/out/artifacts/HubPets_jar</output-path>
-    <root id="archive" name="HubPets.jar">
-      <element id="module-output" name="HubPets" />
-    </root>
-  </artifact>
-</component>

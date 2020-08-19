@@ -1,6 +1,5 @@
 # Default ignored files
 /shelf/
 /workspace.xml
-/out
-/idea
-/HubPets.iml
+/out/
+/.idea/

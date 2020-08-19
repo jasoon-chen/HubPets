@@ -1,19 +1,16 @@
 package me.master.HubPets.petFunctions;
 
-import me.master.HubPets.HubPetsMAIN;
+
 import me.master.HubPets.ymlManagement.ConfigManager;
 import me.master.HubPets.ymlManagement.mainConfigManager;
 import me.master.HubPets.pets.*;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
-import org.bukkit.event.entity.EntityPortalEnterEvent;
 import org.bukkit.event.entity.EntityPortalEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.player.PlayerChangedWorldEvent;
@@ -22,10 +19,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.InventoryView;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.plugin.Plugin;
-import org.bukkit.scheduler.BukkitRunnable;
 
-import java.io.File;
 import java.util.ArrayList;
 import java.util.UUID;
 
@@ -55,6 +49,7 @@ public class petListener implements Listener
     private witherskeleton witherskeleton = new witherskeleton();
     private zombie zombie = new zombie();
     private silverfish silverfish = new silverfish();
+    public fox fox = new fox();
 
     private ArrayList<UUID> uuid = new ArrayList<UUID>();
     private ArrayList<String> pet123 = new ArrayList<String>();
@@ -2822,7 +2817,7 @@ public class petListener implements Listener
                 else
                 {
                     player.closeInventory();
-                    player.sendMessage( "§8[§cHubPets§8] §6You do not have permission to remove the Villager Pet." );
+                    player.sendMessage( "§8[§cHubPets§8] §6You do not have permission to remove the Wolf Pet." );
                     return;
                 }
             }
@@ -3944,6 +3939,169 @@ public class petListener implements Listener
                     return;
                 }
             }
+
+            // Fox  =========================================================================================================================
+            if ( item.getItemMeta().getDisplayName().equals( "§aFox Pet" ) )
+            {
+                if( player.hasPermission( "hubpets.pet.type.fox") || player.hasPermission( "hubpets.pet.type.fox.*"))
+                {
+                    if( config.getLastPet( player.getUniqueId() ).equals("none") )
+                    {
+                        fox.spawnFox(player);
+                        config.setLastPet(player.getUniqueId(), "fox");
+                        config.savePlayers();
+                        config.reloadPlayers();
+                        player.closeInventory();
+                        player.sendMessage( "§8[§cHubPets§8] §6Successfully spawned in the Fox Pet.");
+                        return;
+                    }
+                    else
+                    {
+                        player.closeInventory();
+                        player.sendMessage( "§8[§cHubPets§8] §6You have already selected your pet " + config.getLastPet( player.getUniqueId() ) + " . Remove your pet to select another pet.");
+                        return;
+                    }
+                }
+                else
+                {
+                    player.closeInventory();
+                    player.sendMessage( "§8[§cHubPets§8] §6You do not have permission to spawn the Fox Pet." );
+                    return;
+                }
+            }
+
+            // Fox - Babify
+            if( item.getItemMeta().getDisplayName().equals( "§eBabyify") && (config.getLastPet(player.getUniqueId()).equals( "fox" ) || config.getLastPet(player.getUniqueId()).equals( "babyfox" )))
+            {
+                if( player.hasPermission( "hubpets.pet.type.fox.babify" ) || player.hasPermission( "hubpets.pet.type.fox.*") )
+                {
+                    if( config.getLastPet( player.getUniqueId()).equals("babywolf") )
+                    {
+                        player.closeInventory();
+                        fox.removeFox( player );
+                        fox.spawnFox( player );
+                        player.sendMessage( "§8[§cHubPets§8] §6Successfully changed your baby Fox to a regular Fox." );
+                        return;
+                    }
+                    player.closeInventory();
+                    fox.removeFox( player );
+                    fox.setBabyFox( player );
+                    player.sendMessage( "§8[§cHubPets§8] §6Successfully set the Fox to a baby." );
+                    return;
+                }
+                else
+                {
+                    player.closeInventory();
+                    player.sendMessage( "§8[§cHubPets§8] §6You do not have permission to babify the Fox Pet." );
+                    return;
+                }
+            }
+
+            // Fox - Name
+            if( item.getItemMeta().getDisplayName().equals( "§eName") && (config.getLastPet(player.getUniqueId()).equals( "fox" ) || config.getLastPet(player.getUniqueId()).equals( "babyfox" )) )
+            {
+                if( player.hasPermission( "hubpets.pet.type.fox.name" ) || player.hasPermission( "hubpets.pet.type.fox.*") )
+                {
+                    player.closeInventory();
+                    player.sendMessage( "§8[§cHubPets§8] §6Do /pet name <PETNAME> to name your pet." );
+                    return;
+                }
+                else
+                {
+                    player.closeInventory();
+                    player.sendMessage( "§8[§cHubPets§8] §6You do not have permission to name the Fox Pet." );
+                    return;
+                }
+            }
+
+            // Fox - Sit
+            if( item.getItemMeta().getDisplayName().equals( "§eSit") && (config.getLastPet(player.getUniqueId()).equals( "fox" ) || config.getLastPet(player.getUniqueId()).equals( "babyfox" )) )
+            {
+                if( player.hasPermission( "hubpets.pet.type.fox.sit" ) || player.hasPermission( "hubpets.pet.type.fox.*") )
+                {
+                    player.closeInventory();
+                    fox.rideFox( player );
+                    return;
+                }
+                else
+                {
+                    player.closeInventory();
+                    player.sendMessage( "§8[§cHubPets§8] §6You do not have permission to sit on the Fox Pet." );
+                    return;
+                }
+            }
+
+            // Fox - Hat
+            if( item.getItemMeta().getDisplayName().equals( "§eHat") && (config.getLastPet(player.getUniqueId()).equals( "fox" ) || config.getLastPet(player.getUniqueId()).equals( "babyfox" )) )
+            {
+                if( player.hasPermission( "hubpets.pet.type.fox.hat" ) || player.hasPermission( "hubpets.pet.type.fox.*") )
+                {
+                    player.closeInventory();
+                    fox.hatFox( player );
+                    return;
+                }
+                else
+                {
+                    player.closeInventory();
+                    player.sendMessage( "§8[§cHubPets§8] §6You do not have permission to hat the Fox Pet." );
+                    return;
+                }
+            }
+
+            // Fox - Bring
+            if( item.getItemMeta().getDisplayName().equals( "§eBring") && (config.getLastPet(player.getUniqueId()).equals( "fox" ) || config.getLastPet(player.getUniqueId()).equals( "babyfox" )) )
+            {
+                if( player.hasPermission( "hubpets.pet.type.fox.bring" ) || player.hasPermission( "hubpets.pet.type.fox.*") )
+                {
+                    player.closeInventory();
+                    fox.bringFox( player );
+                    return;
+                }
+                else
+                {
+                    player.closeInventory();
+                    player.sendMessage( "§8[§cHubPets§8] §6You do not have permission to bring the Fox Pet." );
+                    return;
+                }
+            }
+
+            // Fox - Remove
+            if( item.getItemMeta().getDisplayName().equals( "§eRemove") && (config.getLastPet(player.getUniqueId()).equals( "fox" ) || config.getLastPet(player.getUniqueId()).equals( "babyfox" )) )
+            {
+                if( player.hasPermission( "hubpets.pet.type.fox.remove" ) || player.hasPermission( "hubpets.pet.type.fox.*") )
+                {
+                    player.closeInventory();
+                    fox.removeFox( player );
+                    config.setLastPet( player.getUniqueId(), "none" );
+                    config.savePlayers();
+                    config.reloadPlayers();
+                    player.sendMessage( "§8[§cHubPets§8] §6Successfully removed the Fox Pet." );
+                    return;
+                }
+                else
+                {
+                    player.closeInventory();
+                    player.sendMessage( "§8[§cHubPets§8] §6You do not have permission to remove the Fox Pet." );
+                    return;
+                }
+            }
+
+            // Fox - Respawn
+            if( item.getItemMeta().getDisplayName().equals( "§eRespawn" ) && (config.getLastPet(player.getUniqueId()).equals( "wolf" ) || config.getLastPet(player.getUniqueId()).equals( "babywolf" )) )
+            {
+                if( player.hasPermission( "hubpets.pet.type.fox.respawn" ) || player.hasPermission( "hubpets.pet.type.fox.*") )
+                {
+                    player.closeInventory();
+                    fox.respawnFox( player );
+                    return;
+                }
+                else
+                {
+                    player.closeInventory();
+                    player.sendMessage( "§8[§cHubPets§8] §6You do not have permission to respawn the Fox Pet." );
+                    return;
+                }
+            }
         }
 
     }
@@ -4215,6 +4373,20 @@ public class petListener implements Listener
             pet123.add( "silverfish" );
             return;
         }
+        else if( config.getLastPet( event.getPlayer().getUniqueId() ).equals("fox") )
+        {
+            fox.spawnFox( event.getPlayer() );
+            uuid.add( event.getPlayer().getUniqueId() );
+            pet123.add( "fox" );
+            return;
+        }
+        else if( config.getLastPet( event.getPlayer().getUniqueId() ).equals("babyfox") )
+        {
+            fox.setBabyFox( event.getPlayer() );
+            uuid.add( event.getPlayer().getUniqueId() );
+            pet123.add( "babyfox" );
+            return;
+        }
     }
 
     @EventHandler
@@ -4469,6 +4641,18 @@ public class petListener implements Listener
             config.setLastPet( uuid, "silverfish" );
             return;
         }
+        else if( config.getLastPet( event.getPlayer().getUniqueId() ).equals("fox") )
+        {
+            fox.removeFox(player);
+            config.setLastPet( uuid, "fox" );
+            return;
+        }
+        else if( config.getLastPet( event.getPlayer().getUniqueId() ).equals("babyfox") )
+        {
+            fox.removeFox(player);
+            config.setLastPet( uuid, "babyfox" );
+            return;
+        }
     }
 
     @EventHandler
@@ -4489,7 +4673,7 @@ public class petListener implements Listener
     public boolean teleportPet( PlayerMoveEvent event )
     {
         Player player = event.getPlayer();
-        
+
         Location owner = player.getLocation();
         String ownerfacing = player.getFacing().toString();
 
@@ -4539,7 +4723,7 @@ public class petListener implements Listener
         }
         else if( config.getLastPet( player.getUniqueId() ).equals("chicken") || config.getLastPet( player.getUniqueId() ).equals("babychicken") )
         {
-            
+
             Location cat1 = chicken.getLocation( player );
 
             if ( Math.abs(owner.getX()) - Math.abs(cat1.getX()) > config1.getDistance())
@@ -4790,7 +4974,7 @@ public class petListener implements Listener
         }
         else if( config.getLastPet( player.getUniqueId() ).equals("wolf") || config.getLastPet( player.getUniqueId() ).equals("babywolf") )
         {
-            
+
             Location cat = wolf.getLocation( player );
 
             if( ownerfacing.equals("NORTH") || ownerfacing.equals("SOUTH") )
@@ -4929,7 +5113,7 @@ public class petListener implements Listener
             }
             return true;
         }
-        else if( config.getLastPet( player.getUniqueId() ).equals("zombie") )
+        else if( config.getLastPet( player.getUniqueId() ).equals("zombie") || config.getLastPet( player.getUniqueId() ).equals("babyzombie"))
         {
             Location cat1 = zombie.getLocation( player );
 
@@ -4965,6 +5149,26 @@ public class petListener implements Listener
                 if ( Math.abs(Math.abs(owner.getBlockZ()) - Math.abs(cat1.getBlockZ())) > config1.getDistance())
                 {
                     silverfish.bringSilverfish(player);
+                }
+            }
+            return true;
+        }
+        else if( config.getLastPet( player.getUniqueId() ).equals("fox") || config.getLastPet( player.getUniqueId() ).equals("babyfox"))
+        {
+            Location cat1 = fox.getLocation( player );
+
+            if( ownerfacing.equals("NORTH") || ownerfacing.equals("SOUTH") )
+            {
+                if ( Math.abs(Math.abs(owner.getBlockZ()) - Math.abs(cat1.getBlockZ())) > config1.getDistance())
+                {
+                    fox.bringFox(player);
+                }
+            }
+            else if( ownerfacing.equals("WEST") || ownerfacing.equals("EAST") )
+            {
+                if ( Math.abs(Math.abs(owner.getBlockZ()) - Math.abs(cat1.getBlockZ())) > config1.getDistance())
+                {
+                    fox.bringFox(player);
                 }
             }
             return true;
@@ -5161,6 +5365,16 @@ public class petListener implements Listener
                 donkey.removeDonkey( player );
                 config.setLastPet( player.getUniqueId(), "silverfish" );
             }
+            else if( config.getLastPet( player.getUniqueId() ).equals("fox") )
+            {
+                fox.removeFox( player );
+                config.setLastPet( player.getUniqueId(), "fox" );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("babyfox") )
+            {
+                fox.removeFox( player );
+                config.setLastPet( player.getUniqueId(), "babyfox" );
+            }
 
         }
 
@@ -5340,6 +5554,16 @@ public class petListener implements Listener
             {
                 donkey.setBabyDonkey( player );
                 donkey.bringDonkey( player );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("fox") )
+            {
+                fox.setBabyFox( player );
+                fox.bringFox( player );
+            }
+            else if( config.getLastPet( player.getUniqueId() ).equals("babyfox") )
+            {
+                fox.setBabyFox( player );
+                fox.bringFox( player );
             }
         }
     }

@@ -4,7 +4,7 @@
 #      ░█▀▀█ ░█─░█ ░█▀▀▄ ░█▄▄█ ░█▀▀▀ ─░█── ─▀▀▀▄▄
 #      ░█─░█ ─▀▄▄▀ ░█▄▄█ ░█─── ░█▄▄▄ ─░█── ░█▄▄▄█
 #
-#        By: masterguyonfire | Discord: mQg3vHs
+#        By: JaxonTekk | Discord: mQg3vHs
 # -------------------------------------------------------
 
 # MUST READ: ONLY PUT THIS PLUGIN IN YOUR HUB WORLD. DO NOT PUT IT IN ANY OTHER WORLD.
@@ -30,6 +30,13 @@ hub-tool: true
 #         DEFAULT: 0
 #         WARNING: Inventory Slots start at 0.
 hub-tool-slot: 1
+
+# MOVE-HUB-TOOL:
+#         PRE-REQUIREMENTS: This will only work if the hub-tool above is true.
+#         DESCRIPTION: Gives users perm to move the pet tool.
+#         USAGE: If you would like players to be able to move the pet tool, then set this to true, if not set it to false.
+#         DEFAULT: false
+hub-tool-move: false
 
 # HUB-WORLD:
 #         DESCRIPTION: Selects the world where tools/commands/pets will be spawned at.

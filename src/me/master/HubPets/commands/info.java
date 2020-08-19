@@ -16,7 +16,7 @@ public class info implements CommandInterface {
         player.sendMessage(BOLD + "" + GRAY + "———————" + RESET + GOLD + " HubPets Information " + RESET + GRAY + BOLD + "———————");
         player.sendMessage(GOLD + "Author" + RESET + DARK_GRAY + "" + BOLD + " » " + RESET + GRAY + " JaxonTekk");
         player.sendMessage(GOLD + "HubPets Discord Server" + RESET + DARK_GRAY + "" + BOLD + " » " + RESET + GRAY + " mQg3vHs");
-        player.sendMessage(GOLD + "Plugin Version" + RESET + DARK_GRAY + "" + BOLD + " » " + RESET + GRAY + " 1.0.2");
+        player.sendMessage(GOLD + "Plugin Version" + RESET + DARK_GRAY + "" + BOLD + " » " + RESET + GRAY + " 1.0.3");
         player.sendMessage(GRAY + "Join our discord server for a custom HubPets plugin or if you have any questions regarding the plugin.");
         return true;
     }

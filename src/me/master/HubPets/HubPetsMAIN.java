@@ -16,7 +16,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
+import org.bukkit.event.entity.EntityTargetLivingEntityEvent;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.inventory.InventoryMoveItemEvent;
 import org.bukkit.event.player.*;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
@@ -308,4 +310,42 @@ public class HubPetsMAIN extends JavaPlugin implements Listener
                 }
             }
         }
+
+    @EventHandler
+    public void movePetTool( InventoryClickEvent event )
+    {
+        if( cfgm1.getMoveHubTool() == false )
+        {
+            if( event.getCurrentItem().getType() == null )
+            {
+                return;
+            }
+
+            Material item = event.getCurrentItem().getType();
+            Player player = (Player) event.getWhoClicked();
+
+            if( item.toString().equals("BONE") )
+            {
+                event.setCancelled( true );
+                player.closeInventory();
+
+            }
+        }
+        else
+        {
+            return;
+        }
+
     }
+
+    @EventHandler
+    public void attackPlayer( EntityTargetLivingEntityEvent event )
+    {
+        String world = event.getEntity().getWorld().toString();
+        int pos1 = world.indexOf( '=' ) + 1;
+        int pos2 = world.indexOf( '}' );
+
+        String newWorld = world.substring( pos1, pos2 );
+        event.setCancelled( true );
+    }
+}

@@ -77,4 +77,9 @@ public class mainConfigManager
         FileConfiguration test = loadData();
         return test.getInt( "hub-tool-slot" );
     }
+    public boolean getMoveHubTool()
+    {
+        FileConfiguration test = loadData();
+        return test.getBoolean( "hub-tool-move");
+    }
 }

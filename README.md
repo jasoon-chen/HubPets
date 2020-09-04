@@ -31,6 +31,11 @@ Need help with using HubPets? Join the [discord server](https://discord.gg/mQg3v
 
 If you need to report a bug or want to suggest a new feature, you can [open an issue on GitHub](https://github.com/JaxonTekk/HubPets/issues/new).
 
+Download
+--------
+
+To download this plugin, go to this [link](https://github.com/JaxonTekk/HubPets/releases/tag/v1.0.6-beta)
+
 Setup
 --------
 

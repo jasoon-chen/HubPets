@@ -58,5 +58,5 @@ Setup
 Permissions
 --------
 
-All permissions regarding the plugin can be found [here](https://jaxontekk.gitbook.io/hubpets/setup/permissions)
+All permissions regarding the plugin can be found [here](https://jaxontekk.gitbook.io/hubpets/setup/permissions).
 

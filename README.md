@@ -2,7 +2,7 @@
 ![Image of Logo](https://media.discordapp.net/attachments/433404755281313792/740643531718262864/Untitled_drawing_5.png)
 
 <p align="center">
-  <a href="https://discord.gg/mQg3vHs">
+  <a href="https://discord.gg/ZEDUWwJZPy">
     <img src="https://img.shields.io/badge/-Chat_on_Discord-7289DA.svg?logo=discord&style=flat-square&logoColor=white" alt="Discord">
   </a>
   <a href="https://github.com/JaxonTekk/HubPets/releases">
@@ -27,7 +27,7 @@ HubPets is basically a better alternative than EchoPets, however there are some 
 Support
 --------
 
-Need help with using HubPets? Join the [discord server](https://discord.gg/mQg3vHs) to ask for help and discuss about HubPets. **We also support custom plugins to fit your servers needs.**
+Need help with using HubPets? Join the [discord server](https://discord.gg/ZEDUWwJZPy) to ask for help and discuss about HubPets. **We also support custom plugins to fit your servers needs.**
 
 If you need to report a bug or want to suggest a new feature, you can [open an issue on GitHub](https://github.com/JaxonTekk/HubPets/issues/new).
 
